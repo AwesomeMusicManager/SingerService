@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Artist Service",
+    "contact": {
+      "email": "rubens.csantos@al.infnet.edu.br"
+    },
+    "version": "1.0.0-oas3"
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Artista",
+      "description": "Example API for requesting music artists"
+    }
+  ],
+  "paths": {
+    "/get_artist": {
+      "get": {
+        "tags": [
+          "Artista"
+        ],
+        "summary": "Retorna artista",
+        "parameters": [
+          {
+            "name": "artist",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "artist name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
