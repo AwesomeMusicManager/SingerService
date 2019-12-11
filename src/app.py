@@ -12,9 +12,6 @@ api = Api(app)
 
 mongo_password = getenv("MONGO_PASSWORD", "")
 
-print(mongo_password)
-logging.debug(mongo_password)
-
 app.config['MONGO_URI'] = "mongodb+srv://admin:{}@cluster0-hb5he.mongodb.net/artist_service?retryWrites=true&w=majority".format(mongo_password)
 
 mongo = PyMongo(app)
