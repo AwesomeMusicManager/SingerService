@@ -46,7 +46,6 @@ class GetArtist(Resource):
 
         if artist:
             logging.info("Found artist in service database")
-            print("Found artist in service database")
             return jsonify(artist=artist["artist"])
         
         response = requests.get("https://api.vagalume.com.br/search.art?q={artist}".format(artist=args.artist)).text
