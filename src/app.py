@@ -12,26 +12,12 @@ api = Api(app)
 
 mongo_password = getenv("MONGO_PASSWORD", "")
 
+print(mongo_password)
+logging.debug(mongo_password)
+
 app.config['MONGO_URI'] = "mongodb+srv://admin:{}@cluster0-hb5he.mongodb.net/artist_service?retryWrites=true&w=majority".format(mongo_password)
 
 mongo = PyMongo(app)
-
-
-logging.basicConfig(filename="newfile.log", 
-                    format='%(asctime)s %(message)s', 
-                    filemode='w') 
-  
-
-logger=logging.getLogger() 
-  
-logger.setLevel(logging.DEBUG)
-  
-
- 
-# logger.info("Just an information") 
-# logger.warning("Its a Warning") 
-# logger.error("Did you try to divide by zero") 
-# logger.critical("Internet is down") 
 
 ### swagger specific ###
 SWAGGER_URL = '/swagger'
@@ -62,6 +48,8 @@ class GetArtist(Resource):
         artist = mongo.db.artists.find_one({"artist": args.artist})
 
         if artist:
+            logging.info("Found artist in service database")
+            print("Found artist in service database")
             return jsonify(artist=artist["artist"])
         
         response = requests.get("https://api.vagalume.com.br/search.art?q={artist}".format(artist=args.artist)).text
@@ -72,8 +60,6 @@ class GetArtist(Resource):
 
         for artist in artist_list:
             sanitized_artist_list.append({"artist": artist["band"]})
-
-        logger.debug("List of artists: {}"),format(sanitized_artist_list)
 
         artist_json = jsonify(sanitized_artist_list)
         
