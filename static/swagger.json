@@ -19,7 +19,7 @@
     }
   ],
   "paths": {
-    "/get_artist": {
+    "/artist": {
       "get": {
         "tags": [
           "Artista"
