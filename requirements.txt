@@ -1,6 +1,8 @@
 flask==1.1.1
 flask-restful==0.3.7
+flask_cors
 gunicorn
 Flask-PyMongo
 dnspython
 requests
+CMRESHandler

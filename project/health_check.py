@@ -4,4 +4,4 @@ import logging
 class HealthCheck(Resource):
     def get(self):
         logging.info("Healthy")
-        return "Health check"
+        return "Health Check"
